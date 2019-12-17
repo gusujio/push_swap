@@ -47,17 +47,14 @@ void    initial(int argc, t_stack **ili)
 {
 	int i;
 
-	i = (int)sizeof(int) * argc;
+	i = 4 * argc * (int)sizeof(struct s_spisok);
 	*ili = (t_stack *)malloc(sizeof(struct s_stack));
-	(*ili)->mas_b = (int*)malloc(i);
-	(*ili)->mas_a = (int*)malloc(i);
+	ft_bzero(*ili, sizeof(struct s_stack));
+	(*ili)->mas_b = (t_spisok*)malloc(i);
+	(*ili)->mas_a = (t_spisok*)malloc(i);
 	ft_bzero((*ili)->mas_b, i);
-	(*ili)->head_a = 0;
-	(*ili)->head_b = 0;
+	ft_bzero((*ili)->mas_a, i);
 	(*ili)->tail_a = argc - 2;
-	(*ili)->tail_b = 0;
-	(*ili)->size_a = 0;
-	(*ili)->size_b = 0;
 }
 
 t_stack *ft_error(int argc, char **argv)
@@ -75,7 +72,8 @@ t_stack *ft_error(int argc, char **argv)
 			ft_printf("Error\n");
 			exit(0);
 		}
-		ili->mas_a[i - 1] = ft_atoi(argv[i]);
+		ili->mas_a[i - 1].num = ft_atoi(argv[i]);
+		ili->size_a++;
 		i++;
 	}
 	return (ili);

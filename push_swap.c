@@ -36,31 +36,21 @@ void     sortar2(int **ar, int n) // сортиорвка масива
 	}
 }
 
-void    creat(t_spisok (*as)[], t_stack *ili)
+int     equally(struct s_spisok *ar, int len,  int x)
 {
 	int i;
-	int j;
 
-	j = 0;
-	i = ili->head_a;
-	while (i < ili->tail_a)
+	i = 0;
+	while (i <= len)
 	{
-		(*as)[j].num = ili->mas_a[i];
-		(*as)[j].next = NULL;
-		(*as)[j].back = NULL;
-		(*as)[j].weight = -1;
+		if (ar[i].num == x)
+			return (i);
 		i++;
-		j++;
 	}
+	return (0);
 }
 
-int     equally(t_spisok (*as)[], int x)
-{
-	int         i;
-
-}
-
-int     twomax(t_stack **ili, t_spisok (*as)[])
+int*     crar(t_stack **ili)
 {
 	static int *ar = NULL;
 	int i;
@@ -69,20 +59,40 @@ int     twomax(t_stack **ili, t_spisok (*as)[])
 	{
 		i = ((*ili)->tail_a - (*ili)->head_a + 1) * (int)sizeof(int);
 		ar = ft_memalloc(i);
-		ft_memcpy(ar = ft_memalloc(i), (*ili)->mas_a, i);
+		i = (*ili)->head_a;
+		while (i <= (*ili)->tail_a)
+		{
+			ar[i] = (*ili)->mas_a[i].num;
+			i++;
+		}
 		sortar2(&ar,(*ili)->tail_a);
 	}
-	weight(ar, *as);
-	return (ar != (*ili)->mas_a);// если уже отсорирован, то 0
+	return (ar);// если уже отсорирован, то 0
+}
+
+int     inferno(int *ar, t_stack **ili)
+{
+	weight(ar, ili);
+	group(ili);
+	obr_max(ili, ar);
+	return (finish(ar, *ili));// если уже отсорирован, то 0
 }
 
 void	push_swap(t_stack *ili)
 {
-	t_spisok as[ili->tail_a - ili->head_a + 2];
+	int i;
+	int j;
+	int *ar;
 
-	creat(&as, ili);
-	while (twomax(&ili, &as)) // поставит нужный вес
+	j = 3;
+	while (j--)
 	{
-
+		i = ili->head_a;
+		while (i <= ili->tail_a)
+		{
+			printf("%d = %d\n", ili->mas_a[i].num, ili->mas_a[i].weight);
+			i++;
+		}
+		inferno(ar = crar(&ili), &ili);
 	}
 }

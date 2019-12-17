@@ -12,45 +12,70 @@
 
 #include "checker.h"
 
-
-void    weight(int *ar, t_spisok as[])
+int finish(int *ar, t_stack *ili)//проверка что он уже отсортирован
 {
-
-}
-
-/*
-void add_in_b_from_x_till_c(t_stack **ili, int x, int y)
-{
-	int b;
 	int i;
 
-	i = (*ili)->head_a;
-	b = 0;
-	while ((*ili)->mas_a[i] != (*ili)->mas_a[y])
-	{
-		if ((*ili)->mas_a[i] == (*ili)->mas_a[x])
-			b = 1;
-		b ? pb(ili) : i++;
-	}
-}
-void turn_right_in_first(t_stack **ili, int x)//сдивагать пока x не станет перовой
-{
-	while ((*ili)->mas_a[(*ili)->head_a] != x)
-		rra(ili);
-}
-int l_o_r(t_stack *ili, int x) // 1 - left, 0 - right
-{
-	return ((ili->tail_a - ili->head_a) / 2 > x);
+	i = 0;
+	return (i);
 }
 
-void    adifspin_a(t_stack **ili, int x)// поставить число x на перое место
+void    twomax_b(struct s_spisok **pop, t_stack **ili)
 {
-	if (l_o_r(*ili, x))
-	{
+	int l;
 
-	}
+	l = (*ili)->head_b;
+	while (l < (*ili)->tail_b)
 	{
-
+		if ((*ili)->mas_b[l].weight <= (*pop)->weight && (*ili)->mas_b[l].weight != -1)
+		{
+			if ((*ili)->mas_b[l].weight == (*pop)->weight)
+			{
+				if ((*ili)->mas_b[l].indexa < (*pop)->indexa)
+				{
+					(*pop) = &((*ili)->mas_b[l]);
+				}
+			}
+			else
+				(*pop) = &((*ili)->mas_b[l]);
+		}
+		l++;
 	}
 }
- */
+
+void    twomax_a(struct s_spisok **pop, t_stack **ili)
+{
+    int l;
+
+    l = (*ili)->head_a;
+    while (l <= (*ili)->tail_a)
+    {
+        if ((*ili)->mas_a[l].weight <= (*pop)->weight && (*ili)->mas_a[l].weight != -1)
+        {
+            if ((*ili)->mas_a[l].weight == (*pop)->weight)
+            {
+                if ((*ili)->mas_a[l].indexa < (*pop)->indexa)
+                {
+                    (*pop) = &((*ili)->mas_a[l]);
+                }
+            }
+            else
+                (*pop) = &((*ili)->mas_a[l]);
+        }
+        l++;
+    }
+}
+
+void    obr_max(t_stack **ili, int *ar)
+{
+	struct s_spisok *pop;
+
+	pop = (struct s_spisok *)malloc(sizeof(struct s_spisok));
+	pop->indexa = 100;
+	pop->weight = 100;
+	twomax_a(&pop, ili);
+	twomax_b(&pop, ili);
+	printf("--%d %d--\n", pop->num, ar[pop->indexa + 1]);
+	swap(pop->num,ar[pop->indexa + 1], ili);
+}
+
