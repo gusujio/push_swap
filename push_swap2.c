@@ -20,6 +20,22 @@ int finish(int *ar, t_stack *ili)//проверка что он уже отсо�
 	return (i);
 }
 
+void                    group(t_stack **ili)
+{
+	int i;
+
+	i = (*ili)->head_a;
+	while (i <= (*ili)->tail_a)
+	{
+		if ((*ili)->mas_a[i].indexa == (*ili)->mas_a[i + 1].indexa - 1)
+		{
+			(*ili)->mas_a[i].next = &((*ili)->mas_a[i + 1]);
+			(*ili)->mas_a[i + 1].back = &((*ili)->mas_a[i]);
+		}
+		i++;
+	}
+}
+
 void    twomax_b(struct s_spisok **pop, t_stack **ili)
 {
 	int l;

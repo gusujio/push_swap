@@ -35,7 +35,7 @@ void    weight(int *ar, t_stack **ili)
 	while (i <= (*ili)->tail_a)
 	{
 		x = equally((*ili)->mas_a, (*ili)->tail_a, ar[i]);
-		(*ili)->mas_a[x].index = i;
+		(*ili)->mas_a[x].indexa = i;
 		y =  equally((*ili)->mas_a, (*ili)->tail_a, ar[i + 1]);
 		z = x > y ? (*ili)->tail_a - x + y : (*ili)->tail_a - y + x;
 		if (x < 0 || y < 0)
