@@ -12,31 +12,32 @@
 
 #include "checker.h"
 
-void till_xa(t_stack **ili, int x)//кидает в b элементы до b.
+void till_xa(t_stack **ili, int x)//кидает в b элементы до x.
 {
 	while ((*ili)->mas_a[(*ili)->head_a].num != x)
 	{
+		(*ili)->mas_a[(*ili)->head_a].a_b = 1;
 		ft_printf("pb\n");
 		pb(ili);
 	}
-	ft_printf("pb\n");
-	pb(ili);
 }
 
 void till_xb(t_stack **ili, int x)//кидает в a элементы до x.
 {
 	while ((*ili)->mas_b[(*ili)->head_b].num != x)
 	{
-		ft_printf("pb\n");
+		(*ili)->mas_a[(*ili)->head_a].a_b = 0;
+		ft_printf("pa\n");
 		pa(ili);
 	}
-	ft_printf("pb\n");
+	(*ili)->mas_b[(*ili)->head_b].a_b = 0;
+	ft_printf("pa\n");
 	pa(ili);
 }
 
-void iha(t_stack **ili, int x)//в b сдивагать пока x не станет перовой
+void iha(t_stack **ili, int x)//сдивагать пока x не станет перовой
 {
-	while ((*ili)->mas_a[(*ili)->head_a].num != (*ili)->mas_a[x].num)
+	while ((*ili)->mas_a[(*ili)->head_a].num != x)
 	{
 		ft_printf("rra\n");
 		rra(ili);
@@ -45,7 +46,7 @@ void iha(t_stack **ili, int x)//в b сдивагать пока x не стан
 
 void ihb(t_stack **ili, int x)//сдивагать пока x не станет перовой
 {
-	while ((*ili)->mas_b[(*ili)->head_b].num != (*ili)->mas_b[x].num)
+	while ((*ili)->mas_b[(*ili)->head_b].num != x)
 	{
 		ft_printf("rra\n");
 		rrb(ili);
@@ -54,7 +55,7 @@ void ihb(t_stack **ili, int x)//сдивагать пока x не станет 
 
 void ita(t_stack **ili, int x)//сдивагать пока x не станет последней
 {
-	while ((*ili)->mas_a[(*ili)->tail_a].num != x)
+	while ((*ili)->mas_a[(*ili)->tail_a - 1].num != x)
 	{
 		ft_printf("ra\n");
 		ra(ili);

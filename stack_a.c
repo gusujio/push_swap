@@ -72,15 +72,15 @@ void ra(t_stack **st)
 		b2 = b;
 		i--;
 	}
-	(*st)->mas_a[(*st)->tail_a].num = a;
+	(*st)->mas_a[(*st)->tail_a - 1].num = a;
 }
 
 void rra(t_stack **st)
 {
 	int b;
 
-	b = (*st)->mas_a[(*st)->tail_a].num;
+	b = (*st)->mas_a[(*st)->tail_a - 1].num;
 	shr_a(st);
 	(*st)->mas_a[(*st)->head_a].num = b;
-	(*st)->mas_a[(*st)->tail_a + 1].num = 0;
+	(*st)->mas_a[(*st)->tail_a].num = 0;
 }

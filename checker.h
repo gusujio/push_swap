@@ -18,6 +18,7 @@
 typedef struct          s_spisok
 {
 	int                 num;
+	int                 a_b;
 	int                 indexa;
 	int                 indexi;
 	int                 weight;
@@ -27,8 +28,8 @@ typedef struct          s_spisok
 
 typedef struct          s_stack
 {
-	struct s_spisok     *mas_a;
-	struct s_spisok     *mas_b;
+	t_spisok            *mas_a;
+	t_spisok            *mas_b;
 	int                 size_a;
 	int                 size_b;
 	int                 head_a;
@@ -56,8 +57,9 @@ void                    weight(int *ar, t_stack **ili);
 int                     equally(struct s_spisok *ar, int len,  int x);
 void                    group(t_stack **ili);
 int                     finish(int *ar, t_stack *ili);
-void                    swap(int x1, int x2, t_stack **ili);
+void                    swap(t_spisok *x1, t_spisok *x2, t_stack **ili);
 void                    ita(t_stack **ili, int x);
+void                    iha(t_stack **ili, int x);
 void                    till_xa(t_stack **ili, int x);
 void                    till_xb(t_stack **ili, int x);
 void                    obr_max(t_stack **ili, int *ar);

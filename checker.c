@@ -54,7 +54,7 @@ void    initial(int argc, t_stack **ili)
 	(*ili)->mas_a = (t_spisok*)malloc(i);
 	ft_bzero((*ili)->mas_b, i);
 	ft_bzero((*ili)->mas_a, i);
-	(*ili)->tail_a = argc - 2;
+	(*ili)->tail_a = argc - 1;
 }
 
 t_stack *ft_error(int argc, char **argv)
@@ -74,6 +74,7 @@ t_stack *ft_error(int argc, char **argv)
 		}
 		ili->mas_a[i - 1].num = ft_atoi(argv[i]);
 		ili->size_a++;
+		ili->mas_a[i - 1].indexi = i - 1;
 		i++;
 	}
 	return (ili);
