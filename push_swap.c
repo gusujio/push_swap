@@ -76,7 +76,7 @@ int     inferno(int *ar, t_stack **ili)
 	group(ili);
 	weight(ar, ili);
 	obr_max(ili, ar);
-	return (finish(ar, *ili));// если уже отсорирован, то 0
+	return (finish(ar, *ili));
 }
 
 void	push_swap(t_stack *ili)
@@ -85,10 +85,10 @@ void	push_swap(t_stack *ili)
 	int *ar;
 
 	ar = crar(&ili);
-	j = 5;
-	while (j--)
+	j = 0;
+	while (inferno(ar, &ili))
 	{
-		inferno(ar, &ili);
+	    j++;
 	}
 	free(ar);
 }

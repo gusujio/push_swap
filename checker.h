@@ -56,7 +56,7 @@ void                    push_swap(t_stack *ili);
 void                    weight(int *ar, t_stack **ili);
 int                     equally(struct s_spisok *ar, int len,  int x);
 void                    group(t_stack **ili);
-int                     finish(int *ar, t_stack *ili);
+int                     finish(const int *ar, t_stack *ili);
 void                    swap(t_spisok *x1, t_spisok *x2, t_stack **ili);
 void                    ita(t_stack **ili, int x);
 void                    iha(t_stack **ili, int x);

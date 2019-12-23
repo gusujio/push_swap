@@ -50,7 +50,6 @@ void pb(t_stack **st)
 		(*st)->mas_a[(*st)->head_a].num = 0;
 		(*st)->size_b++;
 		(*st)->tail_b++;
-		//(*st)->tail_a++;
 		(*st)->head_a++;
 		(*st)->size_a--;
 	}

@@ -12,18 +12,32 @@
 
 #include "checker.h"
 
-int finish(int *ar, t_stack *ili)//проверка что он уже отсортирован
+int finish(const int *ar, t_stack *ili)//проверка что он уже отсортирован
 {
-	int i;
+    int i;
+    int j;
+    int k;
 
-	i = 0;
-	while (ar[0] != ili->mas_a[ili->head_a].num && i++ != ili->tail_a)
-		ra(&ili);
-	if (ar[0] != ili->mas_a[ili->head_a].num)
-		return (1);
-	i = 0;
-	while (i < ili->tail_a - )
-	return (i);//1 - продрлжить
+
+    i = 0;
+    while (ar[0] != ili->mas_a[ili->head_a].num && i++ != ili->tail_a)
+        ra(&ili);
+    if (ar[0] != ili->mas_a[ili->head_a].num)
+        return (1);
+    k = 0;
+    j = ili->head_a;
+    while (j < ili->tail_a)
+    {
+        if (ar[k] != ili->mas_a[j].num)
+        {
+            while (i-- > 0)
+                rra(&ili);
+            return (1);
+        }
+        k++;
+        j++;
+    }
+    return (0);//1 - продрлжить
 }
 
 void                    group(t_stack **ili)
@@ -79,7 +93,7 @@ int zmmm(struct s_spisok *ar,int s, int f)
 	l = s;
 	while (l <= f)
 	{
-		if (ar[l].weight != 0)
+		if (ar[l].weight > 0)
 			return (l);
 		l++;
 	}
