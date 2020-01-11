@@ -90,5 +90,11 @@ void	push_swap(t_stack *ili)
 	{
 	    j++;
 	}
+	j = ili->head_a;
+	while (j < ili->tail_a)
+	{
+		printf("a = %d = %d\n", ili->mas_a[j].num, ili->mas_a[j].weight);
+		j++;
+	}
 	free(ar);
 }

@@ -35,12 +35,21 @@ void till_xb(t_stack **ili, int x)//кидает в a элементы до x.
 	pa(ili);
 }
 
-void iha(t_stack **ili, int x)//сдивагать пока x не станет перовой
+void iha(t_stack **ili, int x)//сдивагать влево пока x не станет перовой
 {
 	while ((*ili)->mas_a[(*ili)->head_a].num != x)
 	{
 		ft_printf("rra\n");
 		rra(ili);
+	}
+}
+
+void ihar(t_stack **ili, int x)//сдивагать вправо пока x не станет перовой
+{
+	while ((*ili)->mas_a[(*ili)->head_a].num != x)
+	{
+		ft_printf("ra\n");
+		ra(ili);
 	}
 }
 
@@ -53,12 +62,21 @@ void ihb(t_stack **ili, int x)//сдивагать пока x не станет 
 	}
 }
 
-void ita(t_stack **ili, int x)//сдивагать пока x не станет последней
+void ita(t_stack **ili, int x)//сдивагать влево пока x не станет последней
 {
 	while ((*ili)->mas_a[(*ili)->tail_a - 1].num != x)
 	{
 		ft_printf("ra\n");
 		ra(ili);
+	}
+}
+
+void itar(t_stack **ili, int x)//сдивагать вправо пока x не станет последней
+{
+	while ((*ili)->mas_a[(*ili)->tail_a - 1].num != x)
+	{
+		ft_printf("rra\n");
+		rra(ili);
 	}
 }
 

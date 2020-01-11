@@ -12,12 +12,25 @@
 
 #include "checker.h"
 
+int finn(const int *ar, t_stack *ili)
+{
+	int z;
+
+	if (ili->size_b)
+		return (1);
+	z = equally(ili->mas_a, ili->tail_a, ar[0]);
+	if (ili->size_a / 2 < z - ili->head_a)
+		iha(&ili, ar[0]);
+	else
+		ihar(&ili, ar[0]);
+	return (0);
+
+}
 int finish(const int *ar, t_stack *ili)//проверка что он уже отсортирован
 {
     int i;
     int j;
     int k;
-
 
     i = 0;
     while (ar[0] != ili->mas_a[ili->head_a].num && i++ != ili->tail_a)
@@ -37,7 +50,9 @@ int finish(const int *ar, t_stack *ili)//проверка что он уже о�
         k++;
         j++;
     }
-    return (0);//1 - продрлжить
+	while (i-- > 0)
+		rra(&ili);
+    return (finn(ar, ili));//1 - продрлжить
 }
 
 void                    group(t_stack **ili)
@@ -61,6 +76,7 @@ void                    group(t_stack **ili)
 		(*ili)->mas_a[i].next = &((*ili)->mas_a[(*ili)->head_a]);
 		(*ili)->mas_a[(*ili)->head_a].back = &((*ili)->mas_a[i]);
 	}
+
 }
 
 void    twomax_b(struct s_spisok **pop, t_stack **ili)

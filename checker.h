@@ -60,6 +60,8 @@ int                     finish(const int *ar, t_stack *ili);
 void                    swap(t_spisok *x1, t_spisok *x2, t_stack **ili);
 void                    ita(t_stack **ili, int x);
 void                    iha(t_stack **ili, int x);
+void itar(t_stack **ili, int x);
+void ihar(t_stack **ili, int x);
 void                    till_xa(t_stack **ili, int x);
 void                    till_xb(t_stack **ili, int x);
 void                    obr_max(t_stack **ili, int *ar);
