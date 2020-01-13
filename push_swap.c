@@ -81,6 +81,23 @@ int     inferno(int *ar, t_stack **ili)
 
 void	push_swap(t_stack *ili)
 {
+	if (ili->size_a < 3)
+	{
+
+	}
+	else if(ili->size_a >= 3 && ili->size_a <= 5)
+	{
+
+	}
+	else if(ili->size_a > 5 && ili->size_a <= 100)
+	{
+
+	}
+	else if(ili->size_a > 100)
+	{
+
+	}
+	/*
 	int j;
 	int *ar;
 
@@ -97,4 +114,5 @@ void	push_swap(t_stack *ili)
 		j++;
 	}
 	free(ar);
+	 */
 }

@@ -102,44 +102,36 @@ void swap2(t_spisok *x1, t_spisok *x2, t_stack **ili)
 		{
 			if (x2->indexi < x1->indexi)
 			{
-				fa(x2, ili);
-				till_xa(ili, x1->num);
+				//ta(x1, ili); - 4 67 3 87 23 // 23 and 67
+				ta(x1, ili);
+				//fa(x2, ili);
 			}
 			else
 			{
 				fa(x1, ili);
-				till_xa(ili, x2->num);
 			}
+			till_xa(ili, x2->num);
 		}
 	}
 	else if (!nearswap(x1, x2, ili))
 	{
-		if (x1->indexi > (*ili)->tail_a - (x1->indexi + 1) + x2->indexi)//ставим в конец
-		{
-			fa(x1, ili);
-			till_xa(ili, x2->num);
-			//устанавливаем x1 в конец и все что между в стек
-		}
-		else // ставим в начало
-		{
-			iha(ili, x1->num);
-			if (!nearswap(x1, x2, ili))
-				till_xa(ili, x2->num);
-			//ставим x1 в начало и меняем с соседним
-		}
+		ta(x2, ili); // устанавливаю в конец и все что до x1 кидаю в b
+		till_xa(ili, x1->num);
 	}
 }
 
 void swap3(t_spisok *x1, t_spisok *x2, t_stack **ili)//x1 в b
 {
-	if (x1->num > x2->num)//ставим в конец
+
+	if (x1->num > x2->num && !x2->next)//ставим в конец
 	{
 		ta(x2, ili);
 		fb(x1, ili);
 	}
 	else
 	{
-		iha(ili, x2->num);
+		fa(x2, ili);
+		fb(x1, ili);
 	}
 	till_xb(ili, x1->num);
 	if ((*ili)->mas_a[(*ili)->head_a].num > (*ili)->mas_a[(*ili)->head_a + 1].num

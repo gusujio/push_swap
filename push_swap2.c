@@ -145,6 +145,7 @@ void    obr_max(t_stack **ili, int *ar)
 	t_spisok *pop;
 	t_spisok *pop2;
 	int i;
+	static int j = 0;
 
 	twomax_a(&pop, ili);
 	twomax_b(&pop, ili);
@@ -168,6 +169,11 @@ void    obr_max(t_stack **ili, int *ar)
 	{
 		printf("b = %d = %d\n", (*ili)->mas_b[i].num, (*ili)->mas_b[i].weight);
 		i++;
+	}
+	if (j++ > 15)
+	{
+		printf("error");
+		exit(1);
 	}
 	printf("--%d %d--\n", pop->num, pop2->num);
 	swap(pop, pop2, ili);
