@@ -15,16 +15,18 @@
 void shr_b(t_stack **st) //двигает вправо
 {
 	int i;
-	int b;
-	int b2;
+	struct s_spisok *b;
+	struct s_spisok *b2;
 
 	i = (*st)->head_b;
-	b2 = (*st)->mas_b[(*st)->head_b].num;
+	b =  (struct s_spisok *)malloc(sizeof(struct s_spisok*));
+	b2 = (struct s_spisok *)malloc(sizeof(struct s_spisok*));
+	ft_memcpy(&b2, &(*st)->mas_b[(*st)->head_b], sizeof(struct s_spisok*));
 	while (i <= (*st)->tail_b)
 	{
-		b = (*st)->mas_b[i + 1].num;
-		(*st)->mas_b[i + 1].num = b2;
-		b2 = b;
+		ft_memcpy(&b, &(*st)->mas_b[i + 1], sizeof(struct s_spisok*));
+		ft_memcpy(&(*st)->mas_b[i + 1], &b2,  sizeof(struct s_spisok*));
+		ft_memcpy(&b2, &b, sizeof(struct s_spisok*));
 		i++;
 	}
 }
@@ -41,12 +43,14 @@ void sb(t_stack **st)
 	}
 }
 
+
+
 void pb(t_stack **st)
 {
 	if ((*st)->size_a)
 	{
 		shr_b(st);
-		(*st)->mas_b[(*st)->head_b] = (*st)->mas_a[(*st)->head_a];
+		ft_memcpy( &(*st)->mas_b[(*st)->head_b] ,&(*st)->mas_a[(*st)->head_a], sizeof(t_spisok));
 		(*st)->mas_a[(*st)->head_a].num = 0;
 		(*st)->size_b++;
 		(*st)->tail_b++;

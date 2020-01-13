@@ -73,6 +73,7 @@ void    weight(int *ar, t_stack **ili)
 void swap1(t_spisok *x1, t_spisok *x2, t_stack **ili)
 {
 	printf("swap1\n");
+	exit(1);
 }
 
 int nearswap(t_spisok *x1, t_spisok *x2, t_stack **ili)
@@ -89,14 +90,33 @@ int nearswap(t_spisok *x1, t_spisok *x2, t_stack **ili)
 }
 void swap2(t_spisok *x1, t_spisok *x2, t_stack **ili)
 {
-	if (!nearswap(x1, x2, ili))
+	if (x2->indexi - x1->indexi < (*ili)->tail_a - x2->indexi + x1->indexi - (*ili)->head_a) // если считая числа с x1 вправо до x2 меньше, чем если считать слево во х2
+	{
+		if (x1->indexi - x2->indexi == 1)
+		{
+			ihar(ili, x2->num);
+			sa(ili);
+			ft_printf("sa\n");
+		}
+		else
+		{
+			if (x2->indexi < x1->indexi)
+			{
+				fa(x2, ili);
+				till_xa(ili, x1->num);
+			}
+			else
+			{
+				fa(x1, ili);
+				till_xa(ili, x2->num);
+			}
+		}
+	}
+	else if (!nearswap(x1, x2, ili))
 	{
 		if (x1->indexi > (*ili)->tail_a - (x1->indexi + 1) + x2->indexi)//ставим в конец
 		{
-			if (x1->indexi < (*ili)->tail_a - x1->indexi)//влево быстрее, чем вправо ????
-				ita(ili, x1->num);
-			else
-				itar(ili, x1->num);
+			fa(x1, ili);
 			till_xa(ili, x2->num);
 			//устанавливаем x1 в конец и все что между в стек
 		}
@@ -114,13 +134,13 @@ void swap3(t_spisok *x1, t_spisok *x2, t_stack **ili)//x1 в b
 {
 	if (x1->num > x2->num)//ставим в конец
 	{
-		if (x2->indexi < (*ili)->tail_a - x2->indexi)//влево быстрее, чем вправо
-			ita(ili, x2->num);
-		else
-			itar(ili, x2->num);
+		ta(x2, ili);
+		fb(x1, ili);
 	}
-	else // ставим в начало
+	else
+	{
 		iha(ili, x2->num);
+	}
 	till_xb(ili, x1->num);
 	if ((*ili)->mas_a[(*ili)->head_a].num > (*ili)->mas_a[(*ili)->head_a + 1].num
 	&& (*ili)->mas_a[(*ili)->head_a].num != x1->num
@@ -137,10 +157,7 @@ void swap(t_spisok *x1, t_spisok *x2, t_stack **ili)
 	}
 	else if (!x1->a_b && !x2->a_b)// если оба находится в а
 	{
-		if (x1->num > x2->num)
-			swap2(x1, x2, ili);
-		else
-			swap2(x2, x1, ili);
+		swap2(x1, x2, ili);
 	}
 	else
 	{

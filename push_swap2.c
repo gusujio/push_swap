@@ -151,7 +151,10 @@ void    obr_max(t_stack **ili, int *ar)
 	i = equally((*ili)->mas_a, (*ili)->tail_a, ar[pop->indexa + 1]);
 	pop2 = (t_spisok *)malloc(sizeof(t_spisok));
 	if (i == -1)
-		ft_memcpy(pop2, &(*ili)->mas_b[equally((*ili)->mas_b, (*ili)->tail_b, ar[pop->indexa + 1])], sizeof(t_spisok));
+	{
+		i = equally((*ili)->mas_b, (*ili)->tail_b, ar[pop->indexa + 1]);
+		ft_memcpy(pop2, &(*ili)->mas_b[i], sizeof(t_spisok));
+	}
 	else
 		ft_memcpy(pop2, &(*ili)->mas_a[i], sizeof(t_spisok));
 	i = (*ili)->head_a;
