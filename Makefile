@@ -6,7 +6,7 @@
 #    By: gusujio <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/22 14:43:32 by gusujio           #+#    #+#              #
-#    Updated: 2019/12/01 17:21:02 by gusujio          ###   ########.fr        #
+#    Updated: 2020/01/17 17:42:19 by gusujio          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRC = checker.c			checker2.c		stack_a.c		stack_b.c\
 SRC2 = 3till5.c         5till100.c      push_swap.c\
 	  push_swap4.c      tll3.c          stack_a.c\
 	  stack_ab.c        stack_b.c       checker.c\
+	  checker2.c
 
 OBJ = $(patsubst %.c, %.o, $(SRC))
 

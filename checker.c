@@ -12,6 +12,19 @@
 
 #include "checker.h"
 
+int onliit(const char *s, char c)
+{
+	int i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] != c)
+			return (0);
+		i++;
+	}
+	return (1);
+}
 int stisnum(const char *s)//строка = числу?
 {
 	int i;
@@ -19,10 +32,16 @@ int stisnum(const char *s)//строка = числу?
 	i = 0;
 	while (s[i])
 	{
-		if (!ft_isdigit(s[i]))
+		if (!ft_isdigit(s[i]) && s[0] != '-')
 			return (0);
 		i++;
 	}
+	if (s[0] == '-' && ft_strlen(s) == 1)
+		return (0);
+	if (onliit(s, '0') && ft_strlen(s) > 1)
+		return (0);
+	if (s[0] == '-' && s[1] == '0')
+		return (0);
 	return (1);
 }
 
@@ -30,6 +49,7 @@ int     ft_double(char **ar, char *s)
 {
 	int i;
 	int j;
+	int l;
 
 	i = 1;
 	j = 0;
@@ -39,8 +59,14 @@ int     ft_double(char **ar, char *s)
 			j++;
 		i++;
 	}
-	i = ft_strlen(s) >= 10;
-	return (j == 1 && ft_strcmp(s, "2147483647") < 0 && i);
+	l = ft_strlen(s);
+	if ((s[0] != '-' && ft_strcmp(s, "2147483647") > 0) && l == 10)
+		return (1);
+	if (s[0] == '-' && ft_strcmp(s + 1, "2147483648") > 0 && l == 11)
+		return (1);
+	if ((l > 10 && s[0] != '-') || (l > 11 && s[0] == '-'))
+		return (1);
+	return (j != 1 );
 }
 
 void    initial(int argc, t_stack **ili)
@@ -67,7 +93,7 @@ t_stack *ft_error(int argc, char **argv)
 	while (argv[i])
 	{
 		if (ft_strchr(argv[i], '.') || ft_double(argv, argv[i])
-		|| argv[i][0] == '-' || !stisnum(argv[i]))
+		 || !stisnum(argv[i]))
 		{
 			ft_printf("Error\n");
 			exit(0);

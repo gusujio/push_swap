@@ -57,7 +57,9 @@ void	push_swap(t_stack *ili)
 	t_mas *ar;
 
 	ar = crar(&ili);
-	if (ili->size_a <= 3)
+	if (norm(ili))
+		return;
+	if (ili->size_a > 1 &&ili->size_a <= 3)
 	{
 		till3(&ili);
 	}

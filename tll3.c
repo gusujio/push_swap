@@ -37,10 +37,14 @@ void till3(t_stack **ili)
 {
 	int l;
 
-	if ((*ili)->mas_a[(*ili)->head_a] > (*ili)->mas_a[(*ili)->head_a + 1])
+	if ((*ili)->size_a >= 2)
 	{
-		ft_printf("sa\n");
-		sa(ili);
+		if ((*ili)->mas_a[(*ili)->head_a] > (*ili)->mas_a[(*ili)->head_a + 1]
+		|| (*ili)->mas_a[(*ili)->head_a + 1] > (*ili)->mas_a[(*ili)->head_a + 2])
+		{
+			ft_printf("sa\n");
+			sa(ili);
+		}
 	}
 	l = min3(*ili);
 	fa(l, ili);

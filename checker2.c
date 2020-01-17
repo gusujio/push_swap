@@ -58,15 +58,18 @@ void    check_str(t_stack **ili, char *s)
 int norm(t_stack *ili)
 {
 	int i;
+	int j;
 
-	if (ili->size_b || ili->tail_b != ili->head_b)
-		return (1);
-	i = 0;
-	while (ili->head_a + i < ili->tail_a)
+	if (ili->size_b)
+		return (0);
+	i = ili->head_a;
+	j = i + 1;
+	while (j < ili->tail_a)
 	{
-		if (ili->mas_a[ili->head_a] < ili->mas_a[ili->head_a + 1])
+		if (ili->mas_a[i] >= ili->mas_a[j])
 			return (0);
 		i++;
+		j++;
 	}
 	return (1);
 }
