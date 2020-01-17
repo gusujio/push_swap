@@ -15,21 +15,17 @@
 
 # include "libft/libft.h"
 
-typedef struct          s_spisok
+typedef struct          s_mas
 {
-	int                 num;
-	int                 a_b;
-	int                 indexa;
-	int                 indexi;
-	int                 weight;
-	struct s_spisok     *next;
-	struct s_spisok     *back;
-}                       t_spisok;
+	int                 x;
+	int                 w;
+	int                 i;
+}                       t_mas;
 
 typedef struct          s_stack
 {
-	t_spisok            *mas_a;
-	t_spisok            *mas_b;
+	int                 *mas_a;
+	int                 *mas_b;
 	int                 size_a;
 	int                 size_b;
 	int                 head_a;
@@ -38,6 +34,14 @@ typedef struct          s_stack
 	int                 tail_b;
 }                       t_stack;
 
+void                    till3(t_stack **ili);
+void                    till5(t_mas *ar, t_stack **ili);
+void                    sort1(t_mas *ar, t_stack **ili);
+void                    sort2(t_mas *ar, t_stack **ili);
+void                    fb(int x1, t_stack **ili);
+void                    fa(int x1, t_stack **ili);
+void                    dpop2(t_stack **ili);
+int                     aequally(t_stack **ili, int x);
 void                    sa(t_stack **st);
 void                    sb(t_stack **st);
 void                    pa(t_stack **st);
@@ -53,25 +57,9 @@ int                     norm(t_stack *ili);
 void                    checker(t_stack *ili);
 t_stack                 *ft_error(int argc, char **argv);
 void                    push_swap(t_stack *ili);
-void                    weight(int *ar, t_stack **ili);
-int                     equally(struct s_spisok *ar, int len,  int x);
-void                    group(t_stack **ili);
-int                     finish(const int *ar, t_stack *ili);
-void                    swap(t_spisok *x1, t_spisok *x2, t_stack **ili);
-void                    ita(t_stack **ili, int x);
-void itb(t_stack **ili, int x);
-void itbr(t_stack **ili, int x);
 void                    iha(t_stack **ili, int x);
 void                    ihb(t_stack **ili, int x);
-void itar(t_stack **ili, int x);
-void ihar(t_stack **ili, int x);
-void ihbr(t_stack **ili, int x);
-void                    till_xa(t_stack **ili, int x);
-void                    till_xb(t_stack **ili, int x);
-void                    obr_max(t_stack **ili, int *ar);
-void fa(t_spisok *x1, t_stack **ili);
-void fb(t_spisok *x1, t_stack **ili);
-void ta(t_spisok *x1, t_stack **ili);
-void tb(t_spisok *x1, t_stack **ili);
+void                    ihar(t_stack **ili, int x);
+void                    ihbr(t_stack **ili, int x);
 
 #endif

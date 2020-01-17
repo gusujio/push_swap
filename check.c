@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_ab.c                                         :+:      :+:    :+:   */
+/*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gusujio <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/30 12:29:25 by gusujio           #+#    #+#             */
-/*   Updated: 2019/11/30 12:29:26 by gusujio          ###   ########.fr       */
+/*   Created: 2020/01/15 19:46:36 by gusujio           #+#    #+#             */
+/*   Updated: 2020/01/15 19:46:43 by gusujio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-void ss(t_stack **st)
+int		main(int argc, char** argv)
 {
-	sa(st);
-	sb(st);
-}
-
-void rr(t_stack **st)
-{
-	ra(st);
-	rb(st);
-}
-
-void rrr(t_stack **st)
-{
-	rra(st);
-	rrb(st);
+	if (argc > 1)
+	{
+		//push_swap(ft_error(argc, argv));
+		checker(ft_error(argc, argv));
+	}
 }

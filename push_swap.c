@@ -12,7 +12,7 @@
 
 #include "checker.h"
 
-void     sortar2(int **ar, int n) // сортиорвка масива
+void     sortar2(t_mas **ar, int n) // сортиорвка масива
 {
 	int i;
 	int j;
@@ -24,11 +24,11 @@ void     sortar2(int **ar, int n) // сортиорвка масива
 		j = 0;
 		while (j < n - i)
 		{
-			if ((*ar)[j] > (*ar)[j + 1])
+			if ((*ar)[j].x > (*ar)[j + 1].x)
 			{
-				tmp = (*ar)[j];
+				tmp = (*ar)[j].x;
 				(*ar)[j] = (*ar)[j + 1];
-				(*ar)[j + 1] = tmp;
+				(*ar)[j + 1].x = tmp;
 			}
 			j++;
 		}
@@ -36,83 +36,48 @@ void     sortar2(int **ar, int n) // сортиорвка масива
 	}
 }
 
-int     equally(struct s_spisok *ar, int len,  int x)
+t_mas*     crar(t_stack **ili)
 {
-	int i;
+	t_mas   *ar;
+	int     i;
 
+	ar = (t_mas*)malloc((*ili)->size_a * (int)sizeof(t_mas));
 	i = 0;
-	while (i <= len)
+	while (i < (*ili)->tail_a)
 	{
-		if (ar[i].num == x)
-			return (i);
+		ar[i].x = (*ili)->mas_a[i];
 		i++;
 	}
-	return (-1);
-}
-
-int*     crar(t_stack **ili)
-{
-	int *ar;
-	int i;
-	int j;
-
-	i = (*ili)->tail_a - (*ili)->head_a  + (*ili)->tail_b - (*ili)->head_b ;
-	ar = ft_memalloc(i * (int) sizeof(int));
-	ar[i] = -1;
-	j = (*ili)->head_a;
-	i = 0;
-	while (j < (*ili)->tail_a)
-	{
-		ar[i] = (*ili)->mas_a[j].num;
-		i++;
-		j++;
-	}
-	sortar2(&ar, (*ili)->tail_a - 1);
-	return (ar);// если уже отсорирован, то 0
-}
-
-int     inferno(int *ar, t_stack **ili)
-{
-	group(ili);
-	weight(ar, ili);
-	obr_max(ili, ar);
-	return (finish(ar, *ili));
+	sortar2(&ar, (*ili)->size_a - 1);
+	return (ar);
 }
 
 void	push_swap(t_stack *ili)
 {
-	if (ili->size_a < 3)
-	{
-
-	}
-	else if(ili->size_a >= 3 && ili->size_a <= 5)
-	{
-
-	}
-	else if(ili->size_a > 5 && ili->size_a <= 100)
-	{
-
-	}
-	else if(ili->size_a > 100)
-	{
-
-	}
-	/*
-	int j;
-	int *ar;
+	t_mas *ar;
 
 	ar = crar(&ili);
-	j = 0;
-	while (inferno(ar, &ili))
+	if (ili->size_a <= 3)
 	{
-	    j++;
+		till3(&ili);
 	}
-	j = ili->head_a;
-	while (j < ili->tail_a)
+	else if(ili->size_a > 3 && ili->size_a <= 5)
 	{
-		printf("a = %d = %d\n", ili->mas_a[j].num, ili->mas_a[j].weight);
-		j++;
+		till5(ar, &ili);
 	}
-	free(ar);
-	 */
+	else if(ili->size_a > 5)
+	{
+		sort1(ar, &ili);
+		sort2(ar, &ili);
+	}
+}
+
+int		main(int argc, char** argv)
+{
+	t_stack *ili;
+
+	if (argc > 1)
+	{
+		push_swap(ili = ft_error(argc, argv));
+	}
 }

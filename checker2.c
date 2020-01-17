@@ -64,7 +64,7 @@ int norm(t_stack *ili)
 	i = 0;
 	while (ili->head_a + i < ili->tail_a)
 	{
-		if (ili->mas_a[ili->head_a].num < ili->mas_a[ili->head_a + 1].num)
+		if (ili->mas_a[ili->head_a] < ili->mas_a[ili->head_a + 1])
 			return (0);
 		i++;
 	}
@@ -85,3 +85,4 @@ void     checker(t_stack *ili)
 	else
 		ft_printf("KO\n");
 }
+
